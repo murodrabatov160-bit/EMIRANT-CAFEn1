@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emirant Kafe - Luxury Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #08090c;
+            color: #f1f1f5;
+            min-height: 100vh;
+            padding: 40px 15px;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 50% 100%, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        /* RESTORAN HEADER (VIP STYLE) */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 25px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        header::after {
+            content: '◆   ◇   ◆';
+            display: block;
+            margin-top: 15px;
+            color: #d4af37;
+            font-size: 0.8rem;
+            letter-spacing: 6px;
+            opacity: 0.7;
+        }
+
+        .brand-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3.2rem;
+            font-weight: 800;
+            letter-spacing: 6px;
+            background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            filter: drop-shadow(0 4px 15px rgba(191, 149, 63, 0.25));
+        }
+
+        .brand-subtitle {
+            color: #8e909a;
+            font-size: 0.85rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        /* BO'LIM SARLAVHALARI */
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            color: #d4af37;
+            margin: 55px 0 30px 0;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .section-title::before,
+        .section-title::after {
+            content: '';
+            height: 1px;
+            width: 80px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 25px;
+        }
+
+        /* RESTORAN KARTOCHKASI */
+        .card {
+            background: rgba(18, 20, 29, 0.75);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.18);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            border-color: rgba(212, 175, 55, 0.6);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.15);
+            background: rgba(22, 25, 36, 0.9);
+        }
+
+        /* RASM RAMKASI */
+        .image-wrapper {
+            width: 100%;
+            height: 150px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+            margin-bottom: 14px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .item-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .card:hover .item-img {
+            transform: scale(1.08);
+        }
+
+        .item-name {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #f8f8fc;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        /* NARX TUGMASI VA TOGGLE */
+        .price-box {
+            width: 100%;
+            height: 44px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .btn-show {
+            width: 100%;
+            height: 100%;
+            background: rgba(212, 175, 55, 0.05);
+            color: #d4af37;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            user-select: none;
+        }
+
+        .card:hover .btn-show {
+            background: linear-gradient(135deg, #bf953f 0%, #d4af37 100%);
+            color: #08090c;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .price-value {
+            width: 100%;
+            height: 100%;
+            background: rgba(212, 175, 55, 0.12);
+            color: #fcf6ba;
+            border: 1.5px solid #d4af37;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            animation: popIn 0.3s ease-out;
+            user-select: none;
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top: 70px;
+            padding: 35px 20px;
+            background: rgba(18, 20, 29, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .footer-note {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        .footer-subnote {
+            font-size: 0.9rem;
+            color: #8e909a;
+            font-weight: 300;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.92); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @media (max-width: 480px) {
+            .brand-title { font-size: 2.2rem; letter-spacing: 3px; }
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .card { padding: 12px; }
+            .image-wrapper { height: 110px; }
+            .item-name { font-size: 0.9rem; }
+            .section-title::before, .section-title::after { width: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- OSHXONA NOMI -->
+        <header>
+            <h1 class="brand-title">EMIRANT KAFE</h1>
+            <p class="brand-subtitle">EMIRANT KAFE MENYU</p>
+        </header>
+
+        <!-- NONUSHTA -->
+        <div class="section-title">Nonushta</div>
+        <div class="grid">
+            <div class="card">
+                <div class="image-wrapper"><img src="omlet.jpg" class="item-img" alt="Omlet"></div>
+                <div class="item-name">Omlet</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">25,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="sasiska.jpg" class="item-img" alt="Tuxum Sosiska"></div>
+                <div class="item-name">Tuxum Sosiska</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">20,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="shakshuka.jpg" class="item-img" alt="Shakshuka"></div>
+                <div class="item-name">Shakshuka</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">20,000 som</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="maniy.jpg" class="item-img" alt="Manniy Kasha"></div>
+                <div class="item-name">Manniy Kasha</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">20,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="KASHA111.JPG" class="item-img" alt="Kasha Guruch"></div>
+                <div class="item-name">Kasha Guruch</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">20,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="kasha.jpg" class="item-img" alt="Kasha Obsiyanka"></div>
+                <div class="item-name">Kasha Obsiyanka</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">20,000 so'm</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SHORVALAR -->
+        <div class="section-title">Shorvalar</div>
+        <div class="grid">
+            <div class="card">
+                <div class="image-wrapper"><img src="mastava.jpg" class="item-img" alt="Mastava Shorva"></div>
+                <div class="item-name">Mastava Shorva</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">35,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="shorva.jpg" class="item-img" alt="Logmon Shorva"></div>
+                <div class="item-name">Logmon Shorva</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">40,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="osmashorva.jpg" class="item-img" alt="Osma Shorva"></div>
+                <div class="item-name">Osma Shorva</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">35,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="pelmen.jpg" class="item-img" alt="Pelmen Shorva"></div>
+                <div class="item-name">Pelmen Shorva</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">40,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="marjumak.jpg" class="item-img" alt="Marjumak Shorva"></div>
+                <div class="item-name">Marjumak Shorva</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">25,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="golopsi.jpg" class="item-img" alt="Galupsi Shorva"></div>
+                <div class="item-name">Galupsi Shorva</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">42,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="tovuqshorva.jpg" class="item-img" alt="Tovuq Shorva"></div>
+                <div class="item-name">Tovuq Shorva</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">25,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="borsh.jpg" class="item-img" alt="Borsh"></div>
+                <div class="item-name">Borsh</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">35,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="nohat.jpg" class="item-img" alt="Noxat Shorva"></div>
+                <div class="item-name">Noxat Shorva</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">40,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="kosashorva.jpg" class="item-img" alt="Koza Shorva"></div>
+                <div class="item-name">Koza Shorva</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">60,000 so'm</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LAVASH -->
+        <div class="section-title">Lavash</div>
+        <div class="grid">
+            <div class="card">
+                <div class="image-wrapper"><img src="lavash.jpg" class="item-img" alt="Mol Go'shtli Lavash"></div>
+                <div class="item-name">Mol Go'shtli Lavash</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">40,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="biglavash.jpg" class="item-img" alt="Mol Go'shtli Dabl Lavash"></div>
+                <div class="item-name">Mol Go'shtli Dabl Lavash</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">49,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="sir.jpg" class="item-img" alt="Sirniy Lavash"></div>
+                <div class="item-name">Sirniy Lavash</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">45,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="tandirlavash.jpg" class="item-img" alt="Tandir Lavash"></div>
+                <div class="item-name">Tandir Lavash</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">45,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="tovuqlilavash.jpg" class="item-img" alt="Tovuq Go'shtli Lavash"></div>
+                <div class="item-name">Tovuq Go'shtli Lavash</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">32,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="DUBL.JPG" class="item-img" alt="Tovuq Go'shtli Dabl Lavash"></div>
+                <div class="item-name">Tovuq Go'shtli Dabl Lavash</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">40,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="sirniy.jpg" class="item-img" alt="Sirniy Lavash Tovuqli"></div>
+                <div class="item-name">Sirniy Lavash Tovuqli</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">37,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="tandir.jpg" class="item-img" alt="Tandir Lavash Tovuqli"></div>
+                <div class="item-name">Tandir Lavash Tovuqli</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">40,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="DONAR.JPG" class="item-img" alt="Donar Mol Go'shtli"></div>
+                <div class="item-name">Donar Mol Go'shtli</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">42,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="men.jpg" class="item-img" alt="Mol Go'shtli Dabl Donar"></div>
+                <div class="item-name">Mol Go'shtli Dabl Donar</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">49,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="beruniu.jpg" class="item-img" alt="Sirniy Donar"></div>
+                <div class="item-name">Sirniy Donar</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">45,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="dollor.jpg" class="item-img" alt="Tovuq Go'shtli Donar"></div>
+                <div class="item-name">Tovuq Go'shtli Donar</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">32,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="dollor.jpg" class="item-img" alt="Tovuq Go'shtli Dabl Donar"></div>
+                <div class="item-name">Tovuq Go'shtli Dabl Donar</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">40,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="donar.jpg" class="item-img" alt="Sirniy Tovuqli Dabl Donar"></div>
+                <div class="item-name">Sirniy Tovuqli Dabl Donar</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">37,000 so'm</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TANDIR SOMSA -->
+        <div class="section-title">Tandir Somsa</div>
+        <div class="grid">
+            <div class="card">
+                <div class="image-wrapper"><img src="somsa.jpg" class="item-img" alt="Mol Go'shtli Somsa"></div>
+                <div class="item-name">Mol Go'shtli Somsa</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">15,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="somsakartoshka.jpg" class="item-img" alt="Kartoshkali Somsa"></div>
+                <div class="item-name">Kartoshkali Somsa</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">7,000 so'm</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HOT-DOG -->
+        <div class="section-title">Hot-Dog</div>
+        <div class="grid">
+            <div class="card">
+                <div class="image-wrapper"><img src="xoddog.jpg" class="item-img" alt="Hot-Dog"></div>
+                <div class="item-name">Hot-Dog</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">12,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="xod1.jpg" class="item-img" alt="Hot-Dog Dabl"></div>
+                <div class="item-name">Hot-Dog Dabl</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">18,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="big.jpg" class="item-img" alt="Hot-Dog Big"></div>
+                <div class="item-name">Hot-Dog Big</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">22,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="xod.jpg" class="item-img" alt="Assarti Hot-Dog"></div>
+                <div class="item-name">Assarti Hot-Dog</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">38,000 so'm</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BURGERLAR -->
+        <div class="section-title">Burgerlar</div>
+        <div class="grid">
+            <div class="card">
+                <div class="image-wrapper"><img src="burger2.jpg" class="item-img" alt="Burger"></div>
+                <div class="item-name">Burger</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">27,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="chizburger.jpg" class="item-img" alt="Chizburger"></div>
+                <div class="item-name">Chizburger</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">29,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="burger.jpg" class="item-img" alt="Mega Burger"></div>
+                <div class="item-name">Mega Burger</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">39,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="shef.jpg" class="item-img" alt="Shef Burger"></div>
+                <div class="item-name">Shef Burger</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">34,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="shef2.jpg" class="item-img" alt="Shef Burger Dabl"></div>
+                <div class="item-name">Shef Burger Dabl</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">43,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="mangal.jpg" class="item-img" alt="Mangal Burger"></div>
+                <div class="item-name">Mangal Burger</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">36,000 so'm</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NON KABOB -->
+        <div class="section-title">Non Kabob</div>
+        <div class="grid">
+            <div class="card">
+                <div class="image-wrapper"><img src="nonkobob.jpg" class="item-img" alt="Non Kabob"></div>
+                <div class="item-name">Non Kabob</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">45,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="nonkobob.jpg" class="item-img" alt="Non Kabob Dabl"></div>
+                <div class="item-name">Non Kabob Dabl</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">55,000 so'm</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GARNIR VA SOSLAR -->
+        <div class="section-title">Garnir va Soslar</div>
+        <div class="grid">
+            <div class="card">
+                <div class="image-wrapper"><img src="fri.jpg" class="item-img" alt="Fri"></div>
+                <div class="item-name">Fri</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">15,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="fri.jpg" class="item-img" alt="Derevyanskiy"></div>
+                <div class="item-name">Derevyanskiy</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">15,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="lukoviy_kolso.jpg" class="item-img" alt="Lukoviy Kolso"></div>
+                <div class="item-name">Lukoviy Kolso</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">15,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="sous.jpg" class="item-img" alt="Sous"></div>
+                <div class="item-name">Sous</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">4,000 so'm</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUYUQ TAOMLAR -->
+        <div class="section-title">Quyuq Taomlar</div>
+        <div class="grid">
+            <div class="card">
+                <div class="image-wrapper"><img src="qovurma.jpg" class="item-img" alt="Qovurma Logmon"></div>
+                <div class="item-name">Qovurma Logmon</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">40,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="uygur.jpg" class="item-img" alt="Uygur Logmon"></div>
+                <div class="item-name">Uygur Logmon</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">45,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="manti.jpg" class="item-img" alt="Manti"></div>
+                <div class="item-name">Manti</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">45,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="borak.jpg" class="item-img" alt="Qotir Borak"></div>
+                <div class="item-name">Qotir Borak</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">45,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="tuxum.jpg" class="item-img" alt="Go'sht Borak"></div>
+                <div class="item-name">Go'sht Borak</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">48,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="borak2.jpg" class="item-img" alt="Tuxum Borak"></div>
+                <div class="item-name">Tuxum Borak</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">40,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="kortoshka.jpg" class="item-img" alt="Kartoshka Borak"></div>
+                <div class="item-name">Kartoshka Borak</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">Narxi belgilanmoqda</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="jiz.jpg" class="item-img" alt="Jiz (0.5 kg)"></div>
+                <div class="item-name">Jiz (0.5 kg)</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">125,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="jiz.jpg" class="item-img" alt="Qaymoqqa Jiz"></div>
+                <div class="item-name">Qaymoqqa Jiz</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">70,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="jiz3.jpg" class="item-img" alt="Sabzavotli Jiz"></div>
+                <div class="item-name">Sabzavotli Jiz</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">70,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="sarimay.jpg" class="item-img" alt="Sarimoyga Tovuq"></div>
+                <div class="item-name">Sarimoyga Tovuq</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">70,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="qozon.jpg" class="item-img" alt="Qozon Kabob"></div>
+                <div class="item-name">Qozon Kabob</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">70,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="qozon.jpg" class="item-img" alt="Kabob Sabzavotli (0.5 kg)"></div>
+                <div class="item-name">Kabob Sabzavotli (0.5 kg)</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">140,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="qaymoq.jpg" class="item-img" alt="Qaymoqli Kabob (0.5 kg)"></div>
+                <div class="item-name">Qaymoqli Kabob (0.5 kg)</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">135,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="goshtsay.jpg" class="item-img" alt="Go'sht Say"></div>
+                <div class="item-name">Go'sht Say</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">45,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="tovuqsay.jpg" class="item-img" alt="Go'sht Say Tovuqli"></div>
+                <div class="item-name">Go'sht Say Tovuqli</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">38,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="sach.jpg" class="item-img" alt="Sach Qovurma"></div>
+                <div class="item-name">Sach Qovurma</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">55,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="sach2.jpg" class="item-img" alt="Sach Qovurma Tovuqli"></div>
+                <div class="item-name">Sach Qovurma Tovuqli</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">40,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="bistrgern.jpg" class="item-img" alt="Bistrogen"></div>
+                <div class="item-name">Bistrogen</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">42,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="fituchin.jpg" class="item-img" alt="Italyancha Fituchin"></div>
+                <div class="item-name">Italyancha Fituchin</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">45,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="qanot_barbekyu.jpg" class="item-img" alt="Qanot Barbekyu Sous"></div>
+                <div class="item-name">Qanot Barbekyu Sous</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">38,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="sila.jpg" class="item-img" alt="Go'sht Po Tayskiy"></div>
+                <div class="item-name">Go'sht Po Tayskiy</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">45,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="bet.jpg" class="item-img" alt="Besh Barmoq (2 kishilik)"></div>
+                <div class="item-name">Besh Barmoq (2 kishilik)</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">160,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="bes.jpg" class="item-img" alt="Besh Barmoq (3 kishilik)"></div>
+                <div class="item-name">Besh Barmoq (3 kishilik)</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">280,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="besh.jpg" class="item-img" alt="Besh Barmoq (6 kishilik)"></div>
+                <div class="item-name">Besh Barmoq (6 kishilik)</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">480,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="tuyoq.jpg" class="item-img" alt="Qorin Tuyaq (1 porsiya)"></div>
+                <div class="item-name">Qorin Tuyaq (1 porsiya)</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">70,000 so'm</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SHASHLIKLAR -->
+        <div class="section-title">Shashliklar</div>
+        <div class="grid">
+            <div class="card">
+                <div class="image-wrapper"><img src="ijan.jpg" class="item-img" alt="Ijon Shashlik"></div>
+                <div class="item-name">Ijon Shashlik</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">20,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="kuskovoy.jpg" class="item-img" alt="Kuskavoy Shashlik"></div>
+                <div class="item-name">Kuskavoy Shashlik</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">22,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="jigar.jpg" class="item-img" alt="Jigar Shashlik"></div>
+                <div class="item-name">Jigar Shashlik</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">20,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="tovuq.jpg" class="item-img" alt="Tovuq Kuskavoy Shashlik"></div>
+                <div class="item-name">Tovuq Kuskavoy Shashlik</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">22,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="shashlik.jpg" class="item-img" alt="Tovuq Qanot Shashlik"></div>
+                <div class="item-name">Tovuq Qanot Shashlik</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">20,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="ordak.jpg" class="item-img" alt="O'rdak Shashlik"></div>
+                <div class="item-name">O'rdak Shashlik</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">20,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="ordak.jpg" class="item-img" alt="O'rdak Chopshish"></div>
+                <div class="item-name">O'rdak Chopshish</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">10,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="kus.jpg" class="item-img" alt="Mol Go'sht Kuskavoy Chopshish"></div>
+                <div class="item-name">Mol Go'sht Kuskavoy Chopshish</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">14,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="ijanw.jpg" class="item-img" alt="Ijon Chopshish"></div>
+                <div class="item-name">Ijon Chopshish</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">12,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="chopshish.jpg" class="item-img" alt="Tovuq Chopshish"></div>
+                <div class="item-name">Tovuq Chopshish</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">10,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="sabzavot_kabob.jpg" class="item-img" alt="Sabzavot Kabob"></div>
+                <div class="item-name">Sabzavot Kabob</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">14,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="tovuqs.jpg" class="item-img" alt="Steyk Tovuqli"></div>
+                <div class="item-name">Steyk Tovuqli</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">30,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="setka.jpg" class="item-img" alt="Setka Baliq (kg)"></div>
+                <div class="item-name">Setka Baliq (kg)</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">95,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="gosht2.jpg" class="item-img" alt="Go'sht Assarti"></div>
+                <div class="item-name">Go'sht Assarti</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">360,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="shashlik2.jpg" class="item-img" alt="Shashlik Assarti"></div>
+                <div class="item-name">Shashlik Assarti</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">405,000 so'm</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SALATLAR -->
+        <div class="section-title">Salatlar</div>
+        <div class="grid">
+            <div class="card">
+                <div class="image-wrapper"><img src="mujskoy.jpg" class="item-img" alt="Mujskoy Kapriz"></div>
+                <div class="item-name">Mujskoy Kapriz</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">40,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="achiq.jpg" class="item-img" alt="Achiq Chuchuk"></div>
+                <div class="item-name">Achiq Chuchuk</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">16,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="achiqsnis.jpg" class="item-img" alt="Svejiy Salat"></div>
+                <div class="item-name">Svejiy Salat</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">16,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="sezar.jpg" class="item-img" alt="Sezar"></div>
+                <div class="item-name">Sezar</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">33,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="ypon.jpg" class="item-img" alt="Yaponskiy"></div>
+                <div class="item-name">Yaponskiy</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">35,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="xalepeno.jpg" class="item-img" alt="Xalapeno"></div>
+                <div class="item-name">Xalapeno</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">40,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="salat.jpg" class="item-img" alt="Emirant Salat"></div>
+                <div class="item-name">Emirant Salat</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">40,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="meva.jpg" class="item-img" alt="Meva Assarti"></div>
+                <div class="item-name">Meva Assarti</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">75,000 so'm</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-note">Emirant Kafe</div>
+            <div class="footer-subnote">Har bir taomda yuqori sifat va takrorlanmas ta'm ✨</div>
+        </footer>
+    </div>
+
+    <script>
+        function togglePrice(element) {
+            const btn = element.querySelector('.btn-show');
+            const price = element.querySelector('.price-value');
+
+            if (price.style.display === 'flex') {
+                price.style.display = 'none';
+                btn.style.display = 'flex';
+            } else {
+                btn.style.display = 'none';
+                price.style.display = 'flex';
+            }
+        }
+    </script>
+</body>
+</html>
